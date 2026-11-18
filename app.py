@@ -18,10 +18,20 @@ st.set_page_config(page_title="Multi-Agent Resume Screening", layout="wide")
 
 
 
+
+st.set_page_config(
+    page_title="Multi-Agent Resume Screening",
+    layout="wide"
+)
+
 api_key = st.sidebar.text_input(
     "Enter Google Gemini API Key",
     type="password"
 )
+
+if not api_key:
+    st.warning("Please enter your Google Gemini API Key to continue.")
+    st.stop()
 
 llm = ChatGoogleGenerativeAI(
     model="gemini-2.5-flash",
@@ -34,8 +44,8 @@ embeddings = GoogleGenerativeAIEmbeddings(
     google_api_key=api_key
 )
 
-
 CHROMA_DIR = "chroma_db"
+
 
 
 ###### Utilities - Read PDF
