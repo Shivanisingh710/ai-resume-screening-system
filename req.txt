@@ -1,0 +1,16 @@
+streamlit 
+langgraph 
+langchain
+langchain-core
+langchain-community
+langchain-google-genai
+langsmith
+google-generativeai
+langchain-openai
+langchain-groq
+PyPDF2
+pypdf
+chromadb 
+langchain-text-splitters 
+tiktoken
+chromadb
