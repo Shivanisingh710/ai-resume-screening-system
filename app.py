@@ -1,24 +1,38 @@
 import streamlit as st
 import pandas as pd
-from typing import TypedDict, Dict
+from typing import TypedDict
+import json
 
-from langchain_openai import ChatOpenAI, OpenAIEmbeddings
-from langchain_google_genai import ChatGoogleGenerativeAI, GoogleGenerativeAIEmbeddings
+from langchain_google_genai import (
+    ChatGoogleGenerativeAI,
+    GoogleGenerativeAIEmbeddings
+)
+
 from langchain_core.documents import Document
 from langgraph.graph import StateGraph, END
-from pypdf import PdfReader
 from langchain_community.vectorstores import Chroma
-import json
+from pypdf import PdfReader
 
 ###### config
 st.set_page_config(page_title="Multi-Agent Resume Screening", layout="wide")
 
 
 
-api_key = st.sidebar.text_input('Enter OpenAI API Key',type='password')
+api_key = st.sidebar.text_input(
+    "Enter Google Gemini API Key",
+    type="password"
+)
 
-llm = ChatGoogleGenerativeAI(model="gemini-2.5-flash", temperature=0,api_key= api_key)
-embeddings = GoogleGenerativeAIEmbeddings(model = 'gemini-embedding-001', google_api_key = api_key)
+llm = ChatGoogleGenerativeAI(
+    model="gemini-2.5-flash",
+    temperature=0,
+    google_api_key=api_key
+)
+
+embeddings = GoogleGenerativeAIEmbeddings(
+    model="gemini-embedding-001",
+    google_api_key=api_key
+)
 
 
 CHROMA_DIR = "chroma_db"
@@ -299,8 +313,8 @@ if "results" in st.session_state:
             best_candidate = tie_breaker_agent(tied)
 
 
-        st.success(
-            f"🏆 AI-Selected Best Resume: {best_candidate['candidate_name']}"
+        st.info(
+            f"🏆 Highest AI Scoring Candidate: {best_candidate['candidate_name']}"
         )
 
         st.subheader("📄 Resume Summaries")
