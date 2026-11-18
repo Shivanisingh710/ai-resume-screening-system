@@ -14,10 +14,6 @@ from langchain_community.vectorstores import Chroma
 from pypdf import PdfReader
 
 ###### config
-st.set_page_config(page_title="Multi-Agent Resume Screening", layout="wide")
-
-
-
 
 st.set_page_config(
     page_title="Multi-Agent Resume Screening",
