@@ -16,9 +16,18 @@ from pypdf import PdfReader
 ###### config
 
 st.set_page_config(
-    page_title="Multi-Agent Resume Screening",
+    page_title="AI Resume Analyser",
+    page_icon="📄",
     layout="wide"
 )
+
+st.title("📄 AI Resume Analyser")
+
+st.markdown(
+    "### Intelligent Resume Screening & Candidate Evaluation System"
+)
+
+st.divider()
 
 api_key = st.sidebar.text_input(
     "Enter Google Gemini API Key",
